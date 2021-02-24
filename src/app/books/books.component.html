@@ -1,0 +1,35 @@
+
+<div class="books-component-main">
+  <section class="books-list">
+    <header>
+      <div>
+        В библиотеке 3 книги
+      </div>
+      <button
+        type="button"
+        [routerLink]="['/app/books/add']" >
+        <span>Add new book</span>
+      </button>
+    </header>
+
+    <main>
+      <div class="books-list-header">
+        <app-book-search></app-book-search>
+        <app-book-filters></app-book-filters>
+      </div>
+      <div
+        *ngIf="books$ | async as books; else loading"
+        class="books-list-content" >
+          <app-book-card *ngFor="let book of books" [book]="book">
+          </app-book-card>
+      </div>
+    </main>
+  </section>
+  <section class="book-selected">dsds</section>
+</div>
+
+<ng-template #loading>
+  <p>Wait a moment...</p>
+</ng-template>
+
+

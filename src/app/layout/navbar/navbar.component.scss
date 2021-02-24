@@ -1,0 +1,18 @@
+@import "../../scss/mylib-variables.scss";
+
+
+:host {
+  width: 100%;
+  height: $navbar-height;
+  background: white;
+  position: fixed;
+  z-index: 2;
+  right: 0;
+  left: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.03);
+}
+
+.navbar{
+  height: $navbar-height;
+  background-color: #d3ac6e;
+}
