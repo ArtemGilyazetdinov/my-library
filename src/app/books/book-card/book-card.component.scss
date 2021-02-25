@@ -27,6 +27,29 @@
     flex-direction: column;
     padding: 20px 30px;
 
+    .book-card__title {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      align-items: flex-start;
+    }
+
+    .book-card__description {
+      font-size: 12px;
+      line-height: 14px;
+    }
+
+    .book-card__details {
+      display: flex;
+      margin-top: auto;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-weight: 700;
+      }
+    }
+
   }
 
 }

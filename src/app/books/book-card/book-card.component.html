@@ -3,11 +3,16 @@
     <img src="{{book.bookCover}}" alt="Book" class="book__cover">
   </div>
   <div class="book-card__content">
-    <h2>{{book.title}}</h2>
-
-    <div>
-      {{book.author}}
+    <div class="book-card__title">
+      <h3>{{book.title}}</h3>
+      <div>{{book.author}}</div>
+    </div>
+    <p class="book-card__description">
+      {{book.description | slice:0:100}}
+      <span *ngIf="book.description.length >= 100">...</span>
+    </p>
+    <div class="book-card__details">
+      <span>Год издания {{book.publicationDate}}</span>
     </div>
   </div>
-
 </figure>
