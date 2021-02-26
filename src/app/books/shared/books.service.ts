@@ -20,4 +20,11 @@ export class BooksService {
       map((books: Book[])=> books.find(book => book.id === id))
     );
   }
+
+  searchBooks(terms:string):Observable<Book[]> {
+    console.log('terms',terms)
+    const searchParams = terms;
+    if (!searchParams.trim()) return of([]);
+    return of(BOOKS)
+  }
 }
