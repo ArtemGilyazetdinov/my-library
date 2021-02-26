@@ -5,9 +5,10 @@ import { BooksRoutingModule } from './books-routing.module';
 
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { BooksComponent } from './books.component';
-import { BookSearchComponent } from '../controls/book-search/book-search.component';
-import { BookFiltersComponent } from '../controls/book-filters/book-filters.component';
-import { BookCardComponent } from './book-card/book-card.component'
+import { BookSearchComponent } from './book-search/book-search.component';
+import { BookFiltersComponent } from './book-filters/book-filters.component';
+import { BookCardComponent } from './book-card/book-card.component';
+import { BookCommonModule } from '../common/common.module'
 
 @NgModule({
   declarations: [
@@ -15,11 +16,12 @@ import { BookCardComponent } from './book-card/book-card.component'
     EditBookComponent,
     BookSearchComponent,
     BookFiltersComponent,
-    BookCardComponent
+    BookCardComponent,
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
+    BookCommonModule
   ]
 })
 export class BooksModule { }

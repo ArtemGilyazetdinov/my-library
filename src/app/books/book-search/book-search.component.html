@@ -1,0 +1,18 @@
+<div id="search-component">
+  <input
+    type="text"
+    class="search-component"
+    #searchInput
+    placeholder="Поиск по названию или автору..."
+    (input)="onSearchInputChange($event)"
+  />
+
+  <ul class="search-result">
+    <li *ngFor="let book of books$ | async" >
+      <a href="">
+        <div innerHTML="{{book.title | textMarkPipe:[inputTerms] }} - {{book.author}}"></div>
+      </a>
+    </li>
+  </ul>
+
+</div>
