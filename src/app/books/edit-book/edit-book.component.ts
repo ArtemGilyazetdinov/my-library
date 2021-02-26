@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of, combineLatest, zip, observable, forkJoin } from 'rxjs';
-import { CombineLatestOperator } from 'rxjs/internal/observable/combineLatest';
+import { of, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { Book } from '../shared/books.object';
@@ -18,7 +17,6 @@ export class EditBookComponent implements OnInit {
 
   book = new Book();
   isEditingMode = true;
-
 
   public editForm: FormGroup = this.formBuilder.group({
     id:                       [ null, [Validators.required] ],
@@ -35,7 +33,6 @@ export class EditBookComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     ) { }
-
 
   ngOnInit(): void {
     this.setupRouteParamsSubscription();
@@ -67,7 +64,6 @@ export class EditBookComponent implements OnInit {
     this.router.navigate([ '/app/books' ])
   }
 
-
   loadBook(params: any) {
     if ('id' in params) {
       return forkJoin([
@@ -78,13 +74,10 @@ export class EditBookComponent implements OnInit {
         this.book = books;
       })
     );
-
-
     } else {
       return of(null);
     }
   }
-
 
   private setupRouteParamsSubscription() {
     this.route.params.pipe(
