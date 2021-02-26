@@ -1,1 +1,39 @@
-<p>edit-book works!</p>
+<div class="edit-component">
+  <form class="edit-book-form"
+        autocomplete="off"
+        [formGroup]="editForm"
+        (ngSubmit)="onSubmit()"
+  >
+  <div class="edit-form-content">
+    <div class="edit-form-content-input">
+      <label>
+        id:
+        <input type="number" formControlName="id" >
+      </label>
+      <label>
+        author:
+        <input type="text" formControlName="author">
+      </label>
+      <label>
+        title:
+        <input type="text" formControlName="title">
+      </label>
+      <label>
+        description:
+        <input type="text" formControlName="description">
+      </label>
+      <label>
+        bookCover:
+        <input type="text" formControlName="bookCover">
+      </label>
+      <label>
+        publicationDate:
+        <input type="text" formControlName="publicationDate">
+      </label>
+    </div>
+  </div>
+  <div class="group-buttons">
+    <button class="add-button" type="submit" [disabled]="!editForm.valid">Сохранить</button>
+  </div>
+  </form>
+</div>

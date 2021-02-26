@@ -6,3 +6,14 @@ export interface Book {
   description: string;
   bookCover: string;
 }
+
+export class Book implements Book {
+  id: number = null;
+  author: string = null;
+  title: string = null;
+  publicationDate?: number = null;
+  description: string = null;
+  bookCover: string = null;
+  constructor() {
+  }
+}

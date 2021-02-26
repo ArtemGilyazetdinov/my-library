@@ -10,7 +10,7 @@ import { Book } from '../shared/books.object';
 export class BookFiltersComponent implements OnInit {
 
   sortedBy: string = null;
-  isSortedAscending: boolean = true;
+  isSortedAscending = true;
   selectedBook: Book = null;
 
   @Input() books: Book[] = [];
@@ -24,7 +24,7 @@ export class BookFiltersComponent implements OnInit {
     this.selectedBook = book;
   }
 
-  sortBy(sortProp:string): void{
+  sortBy(sortProp: string): void{
     this.sortedBy = sortProp;
     this.isSortedAscending = !this.isSortedAscending;
   }

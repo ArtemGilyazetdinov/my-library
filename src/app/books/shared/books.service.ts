@@ -11,36 +11,40 @@ export class BooksService {
 
   public bookList: Book[] = BOOKS;
   sortedBy: string = null;
-  isSortedAscending: boolean = true;
+  isSortedAscending = true;
 
   constructor() { }
 
-  getBooks():Observable<Book[]> {
-    return of(this.bookList)
-  };
+  getBooks(): Observable<Book[]> {
+    return of(this.bookList);
+  }
 
-  getBook(id: number):Observable<Book> {
+  getBook(id: number): Observable<Book> {
     return this.getBooks().pipe(
-      map((books: Book[])=> books.find(book => book.id === id))
+      map((books: Book[]) => books.find(book => book.id === id))
     );
   }
 
-  searchBooks(terms:string):Observable<Book[]> {
-    const searchParams = terms;
-    if (!searchParams.trim()) return of([]);
-    return of(this.bookList)
+  addBook(book: Book): void {
+    this.bookList.push(book);
   }
 
-  byField(field) {
+  searchBooks(terms: string): Observable<Book[]> {
+    const searchParams = terms;
+    if (!searchParams.trim()) { return of([]); }
+    return of(this.bookList);
+  }
+
+  byField(field): any {
     return (a, b) => a[field] > b[field] ? 1 : -1;
   }
 
-  byFieldReverse(field) {
+  byFieldReverse(field): any {
     return (a, b) => a[field] < b[field] ? 1 : -1;
   }
 
-  sortBy(sortProp:string): void{
-    this.bookList.sort(this.byField(sortProp))
+  sortBy(sortProp: string): void{
+    this.bookList.sort(this.byField(sortProp));
   }
 
 }

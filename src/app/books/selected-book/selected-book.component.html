@@ -31,7 +31,7 @@
   </div>
 
   <div class="group-buttons">
-    <button class="add-button" type="button">
+    <button class="add-button" type="button" [routerLink]="[ '/app/books/edit/' + book.id ]">
       <span>Изменить</span>
     </button>
     <button class="add-button delete-btn"  type="button">

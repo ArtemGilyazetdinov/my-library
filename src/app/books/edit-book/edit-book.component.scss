@@ -1,0 +1,32 @@
+:host {
+  margin-top: 60px;
+  padding: 60px;
+}
+.edit-form-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.edit-form-content-input {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: auto;
+}
+
+.group-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.add-button {
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+ }
+
+.add-button:hover {
+  color: white;
+  background-color: #42545C;
+}

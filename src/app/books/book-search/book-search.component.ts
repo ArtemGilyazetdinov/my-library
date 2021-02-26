@@ -13,19 +13,19 @@ export class BookSearchComponent implements OnInit {
 
   books$: Observable<Book[]>;
   private searchParams$ = new Subject<string>();
-  inputTerms:string = '';
+  inputTerms = '';
 
   constructor(
-    private bookService: BooksService
+    private bookService: BooksService,
   ) { }
 
   ngOnInit(): void {
     this.books$ = this.searchParams$.pipe(
       switchMap((value: string) => this.bookService.searchBooks(value))
-    )
+    );
   }
 
-  public onSearchInputChange($event: Event):void {
+  public onSearchInputChange($event: Event): void {
     const value = ($event.target as HTMLInputElement).value.toLowerCase().trim();
     this.inputTerms = value;
     this.searchParams$.next(value);

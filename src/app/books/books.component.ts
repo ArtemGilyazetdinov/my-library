@@ -17,7 +17,7 @@ export class BooksComponent implements OnInit {
   bookList: Book[] = [];
   selectedId: number;
   selectedBook: Book = null;
-  isSortedAscending: boolean = true;
+  isSortedAscending = true;
 
   constructor(
     private bookService: BooksService,
@@ -30,14 +30,14 @@ export class BooksComponent implements OnInit {
         this.selectedId = +params.get('id');
         return this.bookService.getBooks();
       })
-    )
+    );
   }
 
   selectBook(book: Book, event: Event): void {
     this.selectedBook = book;
   }
 
- public sortBy(sortProp:string):void {
+ public sortBy(sortProp: string): void {
     this.bookService.sortBy(sortProp);
   }
 

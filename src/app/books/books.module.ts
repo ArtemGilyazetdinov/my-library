@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BooksRoutingModule } from './books-routing.module';
 
@@ -9,7 +10,7 @@ import { BookSearchComponent } from './book-search/book-search.component';
 import { BookFiltersComponent } from './book-filters/book-filters.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { SelectedBookComponent } from './selected-book/selected-book.component';
-import { BookCommonModule } from '../common/common.module'
+import { BookCommonModule } from '../common/common.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { BookCommonModule } from '../common/common.module'
   imports: [
     CommonModule,
     BooksRoutingModule,
-    BookCommonModule
+    BookCommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BooksModule { }
