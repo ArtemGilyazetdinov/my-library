@@ -1,1 +1,13 @@
-<p>book-filters works!</p>
+<div class="filters-header">
+  <div class="filter-header-item" (click)="sortBy('author')">
+    По автору
+    <i class="fas fa-filter">{{isSortedAscending && 'asc' || 'desc'}}</i>
+  </div>
+  <div class="filter-header-item" (click)="sortBy('title')">
+    По названию
+    <i class="fas fa-filter">{{isSortedAscending && 'asc' || 'desc'}}</i>
+  </div>
+</div>
+
+<app-book-card *ngFor="let book of books" [book]="book"  (click)="selectBook(book, $event)">
+</app-book-card>

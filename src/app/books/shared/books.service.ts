@@ -9,10 +9,14 @@ import { BOOKS } from './mock-books';
 })
 export class BooksService {
 
+  public bookList: Book[] = BOOKS;
+  sortedBy: string = null;
+  isSortedAscending: boolean = true;
+
   constructor() { }
 
   getBooks():Observable<Book[]> {
-    return of(BOOKS)
+    return of(this.bookList)
   };
 
   getBook(id: number):Observable<Book> {
@@ -22,9 +26,21 @@ export class BooksService {
   }
 
   searchBooks(terms:string):Observable<Book[]> {
-    console.log('terms',terms)
     const searchParams = terms;
     if (!searchParams.trim()) return of([]);
-    return of(BOOKS)
+    return of(this.bookList)
   }
+
+  byField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+  }
+
+  byFieldReverse(field) {
+    return (a, b) => a[field] < b[field] ? 1 : -1;
+  }
+
+  sortBy(sortProp:string): void{
+    this.bookList.sort(this.byField(sortProp))
+  }
+
 }

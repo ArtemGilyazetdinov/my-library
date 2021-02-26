@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Book } from './shared/books.object';
 import { BooksService } from './shared/books.service';
@@ -14,7 +14,10 @@ import { BooksService } from './shared/books.service';
 export class BooksComponent implements OnInit {
 
   books$: Observable<Book[]>;
+  bookList: Book[] = [];
   selectedId: number;
+  selectedBook: Book = null;
+  isSortedAscending: boolean = true;
 
   constructor(
     private bookService: BooksService,
@@ -30,6 +33,12 @@ export class BooksComponent implements OnInit {
     )
   }
 
+  selectBook(book: Book, event: Event): void {
+    this.selectedBook = book;
+  }
 
+ public sortBy(sortProp:string):void {
+    this.bookService.sortBy(sortProp);
+  }
 
 }

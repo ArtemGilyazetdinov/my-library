@@ -2,11 +2,9 @@
 <div class="books-component-main">
   <section class="books-list">
     <header>
-      <div>
-        В библиотеке 3 книги
-      </div>
       <button
         type="button"
+        class="add-button"
         [routerLink]="['/app/books/add']" >
         <span>Add new book</span>
       </button>
@@ -15,17 +13,32 @@
     <main>
       <div class="books-list-header">
         <app-book-search></app-book-search>
-        <app-book-filters></app-book-filters>
       </div>
       <div
         *ngIf="books$ | async as books; else loading"
-        class="books-list-content" >
-          <app-book-card *ngFor="let book of books" [book]="book">
-          </app-book-card>
+        class="books-list-content"
+      >
+        <!-- <app-book-filters ></app-book-filters> -->
+
+        <div class="filters-header">
+          <div class="filter-header-item" (click)="sortBy('author')">
+            По автору
+            <i class="fas fa-filter">{{isSortedAscending && 'asc' || 'desc'}}</i>
+          </div>
+          <div class="filter-header-item" (click)="sortBy('title')">
+            По названию
+            <i class="fas fa-filter">{{isSortedAscending && 'asc' || 'desc'}}</i>
+          </div>
+        </div>
+
+        <app-book-card *ngFor="let book of books" [book]="book" (click)="selectBook(book, $event)">
+        </app-book-card>
       </div>
     </main>
   </section>
-  <section class="book-selected">dsds</section>
+  <section class="book-selected">
+    <app-selected-book [book]="selectedBook"></app-selected-book>
+  </section>
 </div>
 
 <ng-template #loading>

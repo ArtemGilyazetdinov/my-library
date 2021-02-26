@@ -6,6 +6,7 @@
   margin-bottom: 20px;
   align-items: stretch;
   background-color: burlywood;
+  cursor: pointer;
 
   .book-card__hero {
     flex: 0 0 45%;
@@ -49,9 +50,9 @@
         font-weight: 700;
       }
     }
-
   }
-
 }
 
-
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
