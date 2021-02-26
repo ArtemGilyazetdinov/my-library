@@ -8,6 +8,7 @@ import { BooksComponent } from './books.component';
 import { BookSearchComponent } from './book-search/book-search.component';
 import { BookFiltersComponent } from './book-filters/book-filters.component';
 import { BookCardComponent } from './book-card/book-card.component';
+import { SelectedBookComponent } from './selected-book/selected-book.component';
 import { BookCommonModule } from '../common/common.module'
 
 @NgModule({
@@ -17,6 +18,7 @@ import { BookCommonModule } from '../common/common.module'
     BookSearchComponent,
     BookFiltersComponent,
     BookCardComponent,
+    SelectedBookComponent
   ],
   imports: [
     CommonModule,

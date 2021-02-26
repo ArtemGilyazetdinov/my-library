@@ -1,1 +1,47 @@
-<p>selected-book works!</p>
+<div class="selected-book" *ngIf='book; else noSelectedBook'>
+  <div class="book-info">
+    <div class="book-cover">
+      <img src="{{book.bookCover}}" alt="Book" class="book__cover">
+    </div>
+
+    <div class="book-content">
+      <div class="book-info-header">
+        <h2 class="book-title">{{ book?.title }}</h2>
+        <span class="book-author">{{ book?.author }}</span>
+      </div>
+
+      <div class="book-info-list row">
+        <div class="book-info-column col-md-6">
+          <div class="book-parameter-names">
+            <div class="book-parameter-name">Год издания</div>
+          </div>
+          <div class="book-parameter-values">
+            <div class="book-parameter-value">{{ book?.publicationDate }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-description">
+    <h5>Аннотация</h5>
+    <div>
+      {{book.description}}
+    </div>
+  </div>
+
+  <div class="group-buttons">
+    <button class="add-button" type="button">
+      <span>Изменить</span>
+    </button>
+    <button class="add-button delete-btn"  type="button">
+      <span>Удалить</span>
+    </button>
+  </div>
+</div>
+
+<ng-template #noSelectedBook>
+  <div class="selected-book-no-selected">
+    <div>Nothing selected</div>
+  </div>
+</ng-template>

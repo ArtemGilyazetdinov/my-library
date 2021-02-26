@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  height: 20px;
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-around;
+
+  background-color: grey  ;
+  border-radius: 5px;
+  color: #fff;
+
+  .filter-header-item {
+    flex: 0 0 25%;
+    cursor: pointer;
+    align-self: center;
+  }
+}
