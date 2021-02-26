@@ -68,7 +68,7 @@ export class EditBookComponent implements OnInit {
   }
 
 
-  loadVehicle(params: any) {
+  loadBook(params: any) {
     if ('id' in params) {
       return forkJoin([
         this.bookService.getBook(+params.id),
@@ -88,7 +88,7 @@ export class EditBookComponent implements OnInit {
 
   private setupRouteParamsSubscription() {
     this.route.params.pipe(
-      switchMap(params => this.loadVehicle(params)),
+      switchMap(params => this.loadBook(params)),
     ).subscribe(() => {
       this.editForm.get('author').setValue(this.book.author);
       this.editForm.get('title').setValue(this.book.title);
