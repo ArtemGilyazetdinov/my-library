@@ -37,6 +37,10 @@ export class BooksComponent implements OnInit {
     this.selectedBook = book;
   }
 
+  onChangeSelect(book: Book): void {
+    this.selectedBook = book;
+  }
+
  public sortBy(sortProp: string): void {
     this.bookService.sortBy(sortProp);
   }

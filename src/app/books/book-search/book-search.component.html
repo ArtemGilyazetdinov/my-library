@@ -8,10 +8,8 @@
   />
 
   <ul class="search-result">
-    <li *ngFor="let book of books$ | async" >
-      <a href="">
+    <li *ngFor="let book of books$ | async" (click)="select(book)" >
         <div innerHTML="{{book.title | textMarkPipe:[inputTerms] }} - {{book.author}}"></div>
-      </a>
     </li>
   </ul>
 
