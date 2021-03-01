@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -14,6 +14,8 @@ export class BookSearchComponent implements OnInit {
   books$: Observable<Book[]>;
   private searchParams$ = new Subject<string>();
   inputTerms = '';
+
+  @Output() onSelect = new EventEmitter<Book>();
 
   constructor(
     private bookService: BooksService,
@@ -31,6 +33,8 @@ export class BookSearchComponent implements OnInit {
     this.searchParams$.next(value);
   }
 
-
+  select(book: Book) {
+    this.onSelect.emit(book );
+  }
 
 }

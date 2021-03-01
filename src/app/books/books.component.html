@@ -12,7 +12,7 @@
 
     <main>
       <div class="books-list-header">
-        <app-book-search></app-book-search>
+        <app-book-search (onSelect)="onChangeSelect($event)"></app-book-search>
       </div>
       <div
         *ngIf="books$ | async as books; else loading"
