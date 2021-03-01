@@ -29,22 +29,39 @@ export class BooksService {
     this.bookList.push(book);
   }
 
+  editBook(book: Book): void {
+    this.bookList = this.editBookList(book);
+  }
+
   searchBooks(terms: string): Observable<Book[]> {
     const searchParams = terms;
     if (!searchParams.trim()) { return of([]); }
     return of(this.bookList);
   }
 
-  byField(field): any {
-    return (a, b) => a[field] > b[field] ? 1 : -1;
-  }
 
   byFieldReverse(field): any {
     return (a, b) => a[field] < b[field] ? 1 : -1;
   }
 
-  sortBy(sortProp: string): void{
+  sortBy(sortProp: string): void {
     this.bookList.sort(this.byField(sortProp));
   }
 
+  private byField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+  }
+
+
+  private editBookList = (book: Book):Book[] => {
+    const newBookList = this.bookList;
+    const bookId = newBookList.findIndex((item) => item.id === book.id);
+    const item = { ...newBookList[bookId] } ;
+
+    return [
+      ...newBookList.slice(0, bookId),
+      item,
+      ...newBookList.slice(bookId + 1)
+    ];
+  };
 }
