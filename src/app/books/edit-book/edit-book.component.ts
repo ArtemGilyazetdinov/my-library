@@ -18,15 +18,6 @@ export class EditBookComponent implements OnInit {
   book = new Book();
   isEditingMode = true;
 
-  public editForm: FormGroup = this.formBuilder.group({
-    id:                       [ null, [Validators.required] ],
-    author:                   [ null, [Validators.required] ],
-    title:                    [ null, [Validators.required] ],
-    description:              [ null, [Validators.required] ],
-    bookCover:                [ null, [Validators.required] ],
-    publicationDate:          [ null ],
-  })
-
   constructor(
     private formBuilder: FormBuilder,
     private bookService: BooksService,
@@ -37,6 +28,15 @@ export class EditBookComponent implements OnInit {
   ngOnInit(): void {
     this.setupRouteParamsSubscription();
   }
+
+  public editForm: FormGroup = this.formBuilder.group({
+    id:                       [ '', [Validators.required, Validators.minLength(4)] ],
+    author:                   [ null, [Validators.required] ],
+    title:                    [ null, [Validators.required] ],
+    description:              [ null, [Validators.required] ],
+    bookCover:                [ null, [Validators.required] ],
+    publicationDate:          [ null ],
+  })
 
   onSubmit():void {
     if(!this.editForm.valid) {
@@ -52,6 +52,8 @@ export class EditBookComponent implements OnInit {
       publicationDate
     } = this.editForm.getRawValue();
 
+    const isEditBook = this.isEditingMode;
+
     this.book.id = id;
     this.book.author = author;
     this.book.title = title;
@@ -59,13 +61,14 @@ export class EditBookComponent implements OnInit {
     this.book.bookCover = bookCover;
     this.book.publicationDate = publicationDate;
 
-    this.bookService.addBook(this.book);
+    isEditBook ? this.bookService.editBook(this.book) : this.bookService.addBook(this.book);
 
     this.router.navigate([ '/app/books' ])
   }
 
   loadBook(params: any) {
     if ('id' in params) {
+      this.isEditingMode = true;
       return forkJoin([
         this.bookService.getBook(+params.id),
       ]
@@ -75,6 +78,7 @@ export class EditBookComponent implements OnInit {
       })
     );
     } else {
+      this.isEditingMode = false;
       return of(null);
     }
   }
@@ -93,5 +97,15 @@ export class EditBookComponent implements OnInit {
       console.error(error);
     });
   }
+
+  get id() { return this.editForm.get('id'); }
+
+  get author() { return this.editForm.get('author'); }
+
+  get description() { return this.editForm.get('description'); }
+
+  get bookCover() { return this.editForm.get('bookCover'); }
+
+  get title() { return this.editForm.get('title'); }
 
 }

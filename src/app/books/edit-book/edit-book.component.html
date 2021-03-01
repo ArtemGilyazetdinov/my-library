@@ -4,36 +4,85 @@
         [formGroup]="editForm"
         (ngSubmit)="onSubmit()"
   >
-  <div class="edit-form-content">
-    <div class="edit-form-content-input">
-      <label>
-        id:
-        <input type="number" formControlName="id" >
-      </label>
-      <label>
-        author:
-        <input type="text" formControlName="author">
-      </label>
-      <label>
-        title:
-        <input type="text" formControlName="title">
-      </label>
-      <label>
-        description:
-        <input type="text" formControlName="description">
-      </label>
-      <label>
-        bookCover:
-        <input type="text" formControlName="bookCover">
-      </label>
-      <label>
-        publicationDate:
-        <input type="text" formControlName="publicationDate">
-      </label>
+    <div class="edit-form-content">
+      <div class="edit-form-content-input">
+
+        <div class="form-control">
+          <label>id:</label>
+          <input type="number" formControlName="id">
+
+          <div *ngIf="id.invalid && id.touched"
+                class="alert-danger"
+          >
+            <span *ngIf="id.errors.required">
+              Поле не может быть пустым
+            </span>
+            <span *ngIf="id.errors.minlength && !id.errors.required">
+              не менее 4
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label>author:</label>
+          <input type="text" formControlName="author">
+
+          <div *ngIf="author.invalid && author.touched"
+                class="alert-danger"
+          >
+            <span *ngIf="author.errors.required">
+              Обязательное поле
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label>title:</label>
+          <input type="text" formControlName="title">
+
+          <div *ngIf="title.invalid && title.touched"
+                class="alert-danger"
+          >
+            <span *ngIf="title.errors.required">
+              Обязательное поле
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control description">
+          <label>description:</label>
+          <textarea type="text" formControlName="description">
+          </textarea>
+          <div *ngIf="description.invalid && description.touched"
+                class="alert-danger"
+          >
+            <span *ngIf="description.errors.required">
+              Обязательное поле
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label>bookCover:</label>
+          <input type="text" formControlName="bookCover">
+
+          <div *ngIf="bookCover.invalid && bookCover.touched"
+                class="alert-danger"
+          >
+            <span *ngIf="bookCover.errors.required">
+              Обязательное поле
+            </span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label>publicationDate:</label>
+          <input type="text" formControlName="publicationDate">
+        </div>
+        <div class="group-buttons">
+          <button class="add-button" type="submit" [disabled]="!editForm.valid">Сохранить</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="group-buttons">
-    <button class="add-button" type="submit" [disabled]="!editForm.valid">Сохранить</button>
-  </div>
   </form>
 </div>
