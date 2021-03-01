@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AppConfig } from '../../app.config';
 import { Book } from './books.object';
@@ -17,10 +17,24 @@ export class BooksService {
   sortedBy: string = null;
   isSortedAscending = true;
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
     private http: HttpClient,
     private appConfig: AppConfig
   ) { }
+
+  getAllBooks(): Observable<Book[]> {
+    const url: string = this.appConfig.firebise_url;
+
+    return this.http
+      .get<Book[]>(`${url}.json`)
+      .pipe(
+        catchError(this.handleError<Book[]>('getAllBooks', []))
+      )
+  }
 
   getBooks(): Observable<Book[]> {
     return of(this.bookList);
@@ -46,7 +60,6 @@ export class BooksService {
     return of(this.bookList);
   }
 
-
   byFieldReverse(field): any {
     return (a, b) => a[field] < b[field] ? 1 : -1;
   }
@@ -59,7 +72,6 @@ export class BooksService {
     return (a, b) => a[field] > b[field] ? 1 : -1;
   }
 
-
   private editBookList = (book: Book):Book[] => {
     const newBookList = this.bookList;
     const bookId = newBookList.findIndex((item) => item.id === book.id);
@@ -71,4 +83,13 @@ export class BooksService {
       ...newBookList.slice(bookId + 1)
     ];
   };
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }

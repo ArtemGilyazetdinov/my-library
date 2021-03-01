@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { Book } from './shared/books.object';
-import { BooksService } from './shared/books.service';
+// import { BooksService } from './shared/books.service';
+import { BooksService } from './shared/book.firebase.service';
 
 @Component({
   selector: 'app-books',
@@ -28,7 +29,7 @@ export class BooksComponent implements OnInit {
     this.books$ = this.route.paramMap.pipe(
       switchMap(params => {
         this.selectedId = +params.get('id');
-        return this.bookService.getBooks();
+        return this.bookService.getAllBooks();
       })
     );
   }
